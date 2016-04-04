@@ -4,8 +4,8 @@
 CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
-OBJ      = main.o test/testmodels.o models/Alternative.o models/Criteria.o test/testAlternativeManager.o models/AlternativeManager.o models/CriteriaManager.o test/testCriteriaManager.o
-LINKOBJ  = main.o test/testmodels.o models/Alternative.o models/Criteria.o test/testAlternativeManager.o models/AlternativeManager.o models/CriteriaManager.o test/testCriteriaManager.o
+OBJ      = main.o test/testmodels.o models/Alternative.o models/Criteria.o test/testAlternativeManager.o models/AlternativeManager.o models/CriteriaManager.o test/testCriteriaManager.o views/Views.o test/testView.o
+LINKOBJ  = main.o test/testmodels.o models/Alternative.o models/Criteria.o test/testAlternativeManager.o models/AlternativeManager.o models/CriteriaManager.o test/testCriteriaManager.o views/Views.o test/testView.o
 LIBS     = -L"D:/DevTools/Dev-Cpp/MinGW64/lib" -L"D:/DevTools/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc -g3
 INCS     = -I"D:/DevTools/Dev-Cpp/MinGW64/include" -I"D:/DevTools/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"D:/DevTools/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.8.1/include"
 CXXINCS  = -I"D:/DevTools/Dev-Cpp/MinGW64/include" -I"D:/DevTools/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"D:/DevTools/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.8.1/include" -I"D:/DevTools/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.8.1/include/c++"
@@ -47,3 +47,9 @@ models/CriteriaManager.o: models/CriteriaManager.cpp
 
 test/testCriteriaManager.o: test/testCriteriaManager.cpp
 	$(CPP) -c test/testCriteriaManager.cpp -o test/testCriteriaManager.o $(CXXFLAGS)
+
+views/Views.o: views/Views.cpp
+	$(CPP) -c views/Views.cpp -o views/Views.o $(CXXFLAGS)
+
+test/testView.o: test/testView.cpp
+	$(CPP) -c test/testView.cpp -o test/testView.o $(CXXFLAGS)
