@@ -1,7 +1,7 @@
 #include "../views/Views.h"
 #include <iostream>
 
-#define TEST
+
 #ifdef TEST
 
 using namespace std;

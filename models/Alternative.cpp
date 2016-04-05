@@ -42,8 +42,11 @@ void Alternative::display()
 
 void Alternative::input()
 {
-	cout<<"Input Alternative name: ";
+	cout<<endl<<"+================================+"<<endl;
+	cout<<"====Input Alternative name: ";
 	string tempName;
+	cin.ignore();
 	getline(cin, tempName);
 	setName(tempName);
+	cout<<endl;
 }

@@ -10,6 +10,7 @@ public:
 
 	int mainMenu();
 	int alternativeMenu();
+	int computeMenu();
 	int criteriaMenu();
 	
 };

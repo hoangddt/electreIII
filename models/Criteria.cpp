@@ -49,8 +49,23 @@ void Criteria::display()
 
 void Criteria::input()
 {
-	cout<<"Input Criteria Name: ";
+	cout<<endl<<"+================================+"<<endl;
+	cout<<"| Input Criteria Name: ";
 	string tempName;
+	cin.ignore();
 	getline(cin, tempName);
 	setName(tempName);
+	
+	cout<<"| Input Preference threshold: (p): ";
+	cin>>P;
+
+	cout<<"| Indifference threshold (q): ";
+	cin>>Q;
+
+	cout<<"| Veto threshold v: ";
+	cin>>Vecto;
+
+	cout<<"| Weight: ";
+	cin>>Weight;
+	cout<<"+================================+"<<endl<<endl;
 }
