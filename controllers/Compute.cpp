@@ -1,25 +1,32 @@
 #include "compute.h"
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 
-
-Compute::Compute(int x, int y)
+void alloc2DArray(int** &arr, int w, int h)
 {
-	w = x; // alternative
-	h = y; // criteria
-
-	mMatrix = new int*[w];
+	arr = new int*[w];
 
 	for (int i = 0; i < w; ++i)
 	{
-		mMatrix[i] = new int[h];
+		arr[i] = new int[h];
 	}
+}
+
+Compute::Compute()
+{
+	/*
+	alloc2DArray(mMatrix, w, h);
+	alloc2DArray(mCMatrix, w, w);
+	alloc2DArray(mDMatrix, w, w);
+	alloc2DArray(mSMatrix, w, w);
+	*/
 }
 
 Compute::~Compute()
 {
-	for (int i = 0; i < w; ++i)
+	for (int i = 0; i < m; ++i)
 	{
 		delete []mMatrix[i];
 	}
@@ -27,45 +34,63 @@ Compute::~Compute()
 	delete[] mMatrix;
 }
 
-void Compute::inputMatrix()
-{
-	cout<<"************** Nhap Matran g *********"<<endl;
-	cout<<"\t| Criteria: ";
-	for (int i = 0; i < h; ++i)
-	{
-		cout<<"Criteria "<<i+1<<"\t|";
-	}
 
-	cout<<endl<<"--------------------------------------------------"<<endl;
+void Compute::loadPerformanceMatrixFromFile(string filePath)
+{    
 
-	for (int i = 0; i < w; ++i)
-	{
-		cout<<"\tAlternative "<<i+1<<" :   ";
-		for (int j = 0; j < h; ++j)
-		{
-			cin>>mMatrix[i][j];
-		}
-	}
+    ifstream f(filePath.c_str());
+
+    if (f == NULL)
+        cout<<"File "<<filePath<<"Not found"<<endl;
+
+    f >> m >> n;
+
+    // m numbers of alternative
+    // n numbers of criteria
+
+    // performance matrix
+    alloc2DArray(mMatrix, m, n);
+
+    for (int i = 0; i < m; ++i)
+    {
+    	for (int j = 0; j < n; ++j)
+    	{
+    		f >> mMatrix[i][j];
+    	}
+    }
+
+    f.close();
+
 }
 
 void Compute::displayMatrix()
 {
-	cout<<endl<<"************** Matran g *********"<<endl;
-	cout<<"\t| Criteria: ";
-	for (int i = 0; i < h; ++i)
-	{
-		cout<<"Criteria "<<i+1<<"\t|";
-	}
-
 	cout<<"--------------------------------------------------"<<endl;
 
 
-	for (int i = 0; i < w; ++i)
+	for (int i = 0; i < m; ++i)
 	{
 		cout<<endl<<"\tAlternative "<<i+1<<" :   ";
-		for (int j = 0; j < h; ++j)
+		for (int j = 0; j < n; ++j)
 		{
 			cout<<mMatrix[i][j]<<"\t |";
 		}
 	}
+}
+
+void Compute::calculateCMatrix(CriteriaManager *cm)
+{
+}
+
+void Compute::calculateDMatrix(CriteriaManager *cm)
+{
+}
+
+void Compute::calculateSMatrix()
+{
+}
+
+int Compute::outputResult()
+{
+	return 0;
 }

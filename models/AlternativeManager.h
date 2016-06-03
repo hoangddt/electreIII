@@ -13,9 +13,12 @@ public:
 	
 	void addAlternative(Alternative *alter);
 	Alternative* getAlternative(int index);
+	void loadAlternativeFromFile(string filePath);
+
 	int size();
 	void display();
 	
 private:
 	std::vector<Alternative*> mAlternatives;
+	static int currentID;
 };

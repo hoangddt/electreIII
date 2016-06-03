@@ -25,19 +25,19 @@ string Alternative::getName()
 	return mName;
 }
 
-void Alternative::setID(string id)
+void Alternative::setID(int id)
 {
 	mID = id;
 }
 
-string Alternative::getID()
+int Alternative::getID()
 {
 	return mID;
 }
 
 void Alternative::display()
 {
-	cout<<"This is Alternative: "<<getName()<<", ID: "<<mID<<endl;
+	cout<<"Name: "<<getName()<<", ID: "<<mID<<endl;
 }
 
 void Alternative::input()

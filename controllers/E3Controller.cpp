@@ -1,7 +1,15 @@
 #include <iostream>
 #include "E3Controller.h"
+#include <string>
 
 using namespace std;
+
+string alternativeFilePath = "data\\Alternatives.txt",
+	   criteriaFilePath = "data\\Criterias.txt",
+	   performanceMatrixFilePath = "data\\Matrix.txt",
+	   PWQFilePath = "data\\PWQ.txt";
+
+
 
 E3Controller::E3Controller()
 {
@@ -9,7 +17,7 @@ E3Controller::E3Controller()
 	mCM = new CriteriaManager();
 
 	mView = new View();
-	mCompute = NULL;
+	mCompute = new Compute();
 
 	mainLoop();
 }
@@ -80,19 +88,10 @@ void E3Controller::alternativeProcessing()
 
 void E3Controller::addAlternative()
 {
-	int next = 0;
-	do
-	{
-		cout<<"=== Nhap thong tin cho Alternative: "<<endl;
-		Alternative *a = new Alternative();
-		a->input();
-		mAM->addAlternative(a);
+	cout<<"Nhap Alternatives tu file: "<<alternativeFilePath<<endl;
+	mAM->loadAlternativeFromFile(alternativeFilePath);
 
-		cout<<"=== Tiep tuc? (1/0): ";
-		cin>>next;
-		cout<<endl;
-	}
-	while (next);
+	cout<<"----> Nhap Alternative hoan tat"<<endl;
 }
 
 void E3Controller::editAlternative()
@@ -133,19 +132,10 @@ void E3Controller::criteriaProcessing()
 
 void E3Controller::addCriteria()
 {
-	int next = 0;
-	do
-	{
-		cout<<"=== Nhap thong tin cho Criteria: "<<endl;
-		Criteria *a = new Criteria();
-		a->input();
-		mCM->addCriteria(a);
+	cout<<"Nhap Criteria tu file: "<<criteriaFilePath<<endl;
+	mCM->loadCriteriaFromFile(criteriaFilePath);
 
-		cout<<"=== Tiep tuc? (1/0): ";
-		cin>>next;
-		cout<<endl;
-	}
-	while (next);
+	cout<<"----> Nhap criteria hoan tat"<<endl;
 }
 
 void E3Controller::editCriteria()
@@ -160,12 +150,8 @@ void E3Controller::deleteCriteria()
 
 void E3Controller::computeProcessing()
 {
-	int w = mAM->size(),
-		h = mCM->size();
 
-	if (mCompute == NULL)
-		mCompute = new Compute(w, h);
-
+	int index;
 	int opt;
 	do
 	{
@@ -176,16 +162,32 @@ void E3Controller::computeProcessing()
 				mCompute->displayMatrix();
 				break;
 			case ADD:
-				mCompute->inputMatrix();
+				cout<<"Nhap Performance Matrix tu file: "<<performanceMatrixFilePath<<endl;
+				mCompute->loadPerformanceMatrixFromFile(performanceMatrixFilePath);
+				cout<<"----> Nhap performance Matrix hoan tat"<<endl;
 				break;
-			case EDIT:
+			case 3:
+				// tinh toan ma tran tuong thich C va D
+				mCompute->calculateCMatrix(mCM);
+				mCompute->calculateDMatrix(mCM);
+				cout<<"\t== Da tinh xong C va D"<<endl;
+				break;
+			case 4:
+				// tinh toan ma tran tin nhiem S
+				mCompute->calculateSMatrix();
+				cout<<"\t== Da tinh xong Ma tran S"<<endl;
+				break;
+
+			case 5:
+				index = mCompute->outputResult();
+				cout<<"ket qua: Lua chon tot nhat la: ";
+				cout<<mAM->getAlternative(index)->getName();
+				// cout<<name;
+				cout<<"----------";
+				break;
 				
-				break;
-			case DELETE:
-				
-				break;
-			case EXIT:
+			case 6:
 				break;
 		};
-	} while (opt != EXIT);
+	} while (opt != 6);
 }

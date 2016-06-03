@@ -13,8 +13,8 @@ public:
 	void setName(string name);
 	string getName();
 
-	void setID(string id);
-	string getID();
+	void setID(int id);
+	int getID();
 	
 	float Weight;
 	float Vecto;
@@ -22,9 +22,8 @@ public:
 	float Q;
 
 	void display();
-	void input();
 private:
 	string mName;
 	string mDesc;
-	string mID;
+	int mID;
 };

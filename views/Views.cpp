@@ -68,13 +68,14 @@ int View::criteriaMenu()
 int View::computeMenu()
 {
 	cout<<endl<<"*********** Xu Ly Tinh Toan ***********"<<endl;
-	cout<<"\t+-------------------------------+"<<endl;
-	cout<<"\t|  1: Xem Matran           \t|"<<endl;
-	cout<<"\t|  2: Nhap Matran          \t|"<<endl;
-	cout<<"\t|  3: Sua Criteria         \t|"<<endl;
-	cout<<"\t|  4: Xoa Criteria         \t|"<<endl;
-	cout<<"\t|  5: Thoat ra MainMenu    \t|"<<endl;
-	cout<<"\t+----------------------------+"<<endl;
+	cout<<"\t+-----------------------------------------------+"<<endl;
+	cout<<"\t|  1: Xem Matran           		\t|"<<endl;
+	cout<<"\t|  2: Nhap Matran          		\t|"<<endl;
+	cout<<"\t|  3: Tinh toan ma tran tuong thich C va D \t|"<<endl;
+	cout<<"\t|  4: Tinh toan ma tran tin nhiem          \t|"<<endl;
+	cout<<"\t|  5: Xep hang giam dan    		\t|"<<endl;
+	cout<<"\t|  6: Thoat ra MainMenu    		\t|"<<endl;
+	cout<<"\t+-----------------------------------------------+"<<endl;
 	cout<<"====>Moi Nhap lua chon: ";
 	
 	int opt;
