@@ -20,7 +20,7 @@ public:
 
 	void criteriaProcessing();
 	void addCriteria();
-	void editCriteria();
+	void loadPQW();
 	void deleteCriteria();
 
 	void computeProcessing();

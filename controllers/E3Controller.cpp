@@ -7,7 +7,7 @@ using namespace std;
 string alternativeFilePath = "data\\Alternatives.txt",
 	   criteriaFilePath = "data\\Criterias.txt",
 	   performanceMatrixFilePath = "data\\Matrix.txt",
-	   PWQFilePath = "data\\PWQ.txt";
+	   PWQFilePath = "data\\PQW.txt";
 
 
 
@@ -53,11 +53,11 @@ void E3Controller::mainLoop()
 				cout<<"COMPUTE"<<endl;
 				computeProcessing();
 				break;
-			case EXIT: cout<<"Thoat"<<endl;
+			case 4: cout<<"Thoat"<<endl;
 		};
 		
 	}
-	while (opt != HALT);
+	while (opt != 4);
 }
 
 void E3Controller::alternativeProcessing()
@@ -68,22 +68,16 @@ void E3Controller::alternativeProcessing()
 		opt = mView->alternativeMenu();
 		switch (opt)
 		{
-			case VIEW:
+			case 1:
 				mAM->display();
 				break;
-			case ADD:
+			case 2:
 				addAlternative();
 				break;
-			case EDIT:
-				editAlternative();
-				break;
-			case DELETE:
-				deleteAlternative();
-				break;
-			case EXIT:
+			case 3:
 				break;
 		};
-	} while (opt != EXIT);
+	} while (opt != 3);
 }
 
 void E3Controller::addAlternative()
@@ -112,22 +106,19 @@ void E3Controller::criteriaProcessing()
 		opt = mView->criteriaMenu();
 		switch (opt)
 		{
-			case VIEW:
+			case 1:
 				mCM->display();
 				break;
-			case ADD:
+			case 2:
 				addCriteria();
 				break;
-			case EDIT:
-				editCriteria();
+			case 3:
+				loadPQW();
 				break;
-			case DELETE:
-				deleteCriteria();
-				break;
-			case EXIT:
+			case 4:
 				break;
 		};
-	} while (opt != EXIT);
+	} while (opt != 4);
 }
 
 void E3Controller::addCriteria()
@@ -138,9 +129,12 @@ void E3Controller::addCriteria()
 	cout<<"----> Nhap criteria hoan tat"<<endl;
 }
 
-void E3Controller::editCriteria()
+void E3Controller::loadPQW()
 {
-	cout<<"Edit Alternative, chua cai dat"<<endl;
+	cout<<"Load gia tri P, Q, W tu file: "<<PWQFilePath<<endl;
+	mCM->loadPQWFromFile(PWQFilePath);
+
+	cout<<"----> Load gia tri P, Q, W tu file hoan tat"<<endl;
 }
 
 void E3Controller::deleteCriteria()
@@ -179,10 +173,7 @@ void E3Controller::computeProcessing()
 				break;
 
 			case 5:
-				index = mCompute->outputResult();
-				cout<<"ket qua: Lua chon tot nhat la: ";
-				cout<<mAM->getAlternative(index)->getName();
-				// cout<<name;
+				index = mCompute->outputResult(mAM);
 				cout<<"----------";
 				break;
 				

@@ -35,9 +35,7 @@ int View::alternativeMenu()
 	cout<<"\t+-------------------------------+"<<endl;
 	cout<<"\t|  1: Xem toan bo Alternative \t|"<<endl;
 	cout<<"\t|  2: Them moi Alternative    \t|"<<endl;
-	cout<<"\t|  3: Sua Alternative         \t|"<<endl;
-	cout<<"\t|  4: Xoa Alternative         \t|"<<endl;
-	cout<<"\t|  5: Thoat ra MainMenu       \t|"<<endl;
+	cout<<"\t|  3: Thoat ra MainMenu       \t|"<<endl;
 	cout<<"\t+-------------------------------+"<<endl;
 	cout<<"====>Moi Nhap lua chon: ";
 
@@ -50,13 +48,12 @@ int View::alternativeMenu()
 int View::criteriaMenu()
 {
 	cout<<endl<<"*********** Thao tac voi Criteria ***********"<<endl;
-	cout<<"\t+-------------------------------+"<<endl;
-	cout<<"\t|  1: Xem toan bo Criteria \t|"<<endl;
-	cout<<"\t|  2: Them moi Criteria    \t|"<<endl;
-	cout<<"\t|  3: Sua Criteria         \t|"<<endl;
-	cout<<"\t|  4: Xoa Criteria         \t|"<<endl;
-	cout<<"\t|  5: Thoat ra MainMenu    \t|"<<endl;
-	cout<<"\t+----------------------------+"<<endl;
+	cout<<"\t+-----------------------------------+"<<endl;
+	cout<<"\t|  1: Xem toan bo Criteria        \t|"<<endl;
+	cout<<"\t|  2: Them moi Criteria           \t|"<<endl;
+	cout<<"\t|  3: Load gia tri p, q va weight \t|"<<endl;
+	cout<<"\t|  4: Thoat ra MainMenu           \t|"<<endl;
+	cout<<"\t+-----------------------------------+"<<endl;
 	cout<<"====>Moi Nhap lua chon: ";
 	
 	int opt;
