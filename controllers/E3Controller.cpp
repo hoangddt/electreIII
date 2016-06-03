@@ -41,43 +41,47 @@ void E3Controller::mainLoop()
 		opt = mView->mainMenu();
 		switch (opt)
 		{
-			case ALTERNATIVE_MENU:
-				cout<<"ElaternativeMenu"<<endl;
-				alternativeProcessing();
+			case 1:
+			// nhap du lieu
+				inputProcessing();
 				break;
-			case CRITERIA_MENU:
-				cout<<"CriteriaMenu"<<endl;
-				criteriaProcessing();
+			case 2:
+				viewDataProcessing();
 				break;
-			case COMPUTE:
-				cout<<"COMPUTE"<<endl;
+			case 3:
 				computeProcessing();
 				break;
-			case 4: cout<<"Thoat"<<endl;
+			case 4: cout<<"Good Bye!"<<endl;
 		};
 		
 	}
 	while (opt != 4);
 }
 
-void E3Controller::alternativeProcessing()
+void E3Controller::inputProcessing()
 {
 	int opt;
 	do
 	{
-		opt = mView->alternativeMenu();
+		opt = mView->inputMenu();
 		switch (opt)
 		{
 			case 1:
-				mAM->display();
-				break;
-			case 2:
 				addAlternative();
 				break;
+			case 2:
+				addCriteria();
+				break;
 			case 3:
+				loadPQW();
+				break;
+			case 4:
+				cout<<"Nhap Performance Matrix tu file: "<<performanceMatrixFilePath<<endl;
+				mCompute->loadPerformanceMatrixFromFile(performanceMatrixFilePath);
+				cout<<"----> Nhap performance Matrix hoan tat"<<endl;
 				break;
 		};
-	} while (opt != 3);
+	} while (opt != 5);
 }
 
 void E3Controller::addAlternative()
@@ -88,32 +92,22 @@ void E3Controller::addAlternative()
 	cout<<"----> Nhap Alternative hoan tat"<<endl;
 }
 
-void E3Controller::editAlternative()
-{
-	cout<<"Edit Alternative, chua cai dat"<<endl;
-}
-
-void E3Controller::deleteAlternative()
-{
-	cout<<"DELETE Alternative, chua cai dat"<<endl;
-}
-
-void E3Controller::criteriaProcessing()
+void E3Controller::viewDataProcessing()
 {
 	int opt;
 	do
 	{
-		opt = mView->criteriaMenu();
+		opt = mView->viewMenu();
 		switch (opt)
 		{
 			case 1:
-				mCM->display();
+				mAM->display();
 				break;
 			case 2:
-				addCriteria();
+				mCM->display();
 				break;
 			case 3:
-				loadPQW();
+				mCompute->displayMatrix();
 				break;
 			case 4:
 				break;
@@ -137,48 +131,15 @@ void E3Controller::loadPQW()
 	cout<<"----> Load gia tri P, Q, W tu file hoan tat"<<endl;
 }
 
-void E3Controller::deleteCriteria()
-{
-	cout<<"DELETE Alternative, chua cai dat"<<endl;
-}
-
 void E3Controller::computeProcessing()
 {
+	// tinh toan ma tran tuong thich C va D
+	mCompute->calculateCMatrix(mCM);
+	mCompute->calculateDMatrix(mCM);
 
-	int index;
-	int opt;
-	do
-	{
-		opt = mView->computeMenu();
-		switch (opt)
-		{
-			case VIEW:
-				mCompute->displayMatrix();
-				break;
-			case ADD:
-				cout<<"Nhap Performance Matrix tu file: "<<performanceMatrixFilePath<<endl;
-				mCompute->loadPerformanceMatrixFromFile(performanceMatrixFilePath);
-				cout<<"----> Nhap performance Matrix hoan tat"<<endl;
-				break;
-			case 3:
-				// tinh toan ma tran tuong thich C va D
-				mCompute->calculateCMatrix(mCM);
-				mCompute->calculateDMatrix(mCM);
-				cout<<"\t== Da tinh xong C va D"<<endl;
-				break;
-			case 4:
-				// tinh toan ma tran tin nhiem S
-				mCompute->calculateSMatrix();
-				cout<<"\t== Da tinh xong Ma tran S"<<endl;
-				break;
+	// tinh toan ma tran tin nhiem S
+	mCompute->calculateSMatrix();
 
-			case 5:
-				index = mCompute->outputResult(mAM);
-				cout<<"----------";
-				break;
-				
-			case 6:
-				break;
-		};
-	} while (opt != 6);
+	// xuat ket qua cuoi cung
+	mCompute->outputResult(mAM);
 }

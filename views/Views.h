@@ -9,8 +9,6 @@ public:
 	~View();
 
 	int mainMenu();
-	int alternativeMenu();
-	int computeMenu();
-	int criteriaMenu();
-	
+	int inputMenu();
+	int viewMenu();	
 };

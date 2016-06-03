@@ -77,15 +77,15 @@ void Compute::displayMatrix()
 		}
 	}
 
-	cout<<endl<<"-----C Matrix------------------------"<<endl;
-	for (int i = 0; i < m; ++i)
-	{
-		for (int j = 0; j < m; ++j)
-		{
-			cout<<mCMatrix[i][j]<<"\t |";
-		}
-		cout<<endl;
-	}
+	// cout<<endl<<"-----C Matrix------------------------"<<endl;
+	// for (int i = 0; i < m; ++i)
+	// {
+	// 	for (int j = 0; j < m; ++j)
+	// 	{
+	// 		cout<<mCMatrix[i][j]<<"\t |";
+	// 	}
+	// 	cout<<endl;
+	// }
 }
 
 void Compute::calculateCMatrix(CriteriaManager *cm)
@@ -117,7 +117,7 @@ void Compute::calculateCMatrix(CriteriaManager *cm)
 				else
 					cTemp[k] = (mMatrix[i][k] + cm->P[k] - mMatrix[j][k]) / (cm->P[k] - cm->Q[k]);
 				
-				cout<<"i - j - k - cTemp: "<<i<<", "<<j<<", "<<k<<", "<<cTemp[k]<<endl;
+				// cout<<"i - j - k - cTemp: "<<i<<", "<<j<<", "<<k<<", "<<cTemp[k]<<endl;
 			}
 			
 			for (int l = 0; l < numberOfCriteria; ++l)
@@ -127,7 +127,7 @@ void Compute::calculateCMatrix(CriteriaManager *cm)
 			}
 
 			mCMatrix[i][j] = tuso / mauso;
-			cout<<"tuso - mauso - matrix[i][j]: "<<tuso<<", "<<mauso<<", "<<mCMatrix[i][j]<<endl;
+			// cout<<"tuso - mauso - matrix[i][j]: "<<tuso<<", "<<mauso<<", "<<mCMatrix[i][j]<<endl;
 			// reset for next loop
 			tuso = mauso = 0;
 		}
@@ -220,10 +220,14 @@ int Compute::outputResult(AlternativeManager *am)
 		}
 	}
 
-	cout<<"Ket qua lua chon, xep theo thu tu giam dan: "<<endl;
-	for (int i = 0; i < m; ++i)
+	// cout<<"Ket qua lua chon, xep theo thu tu giam dan: "<<endl;
+	cout<<"\t\t+ Lua chon tot nhat la: "<<endl;
+	cout<<"\t\t\t1: "<<am->getAlternative(index[0])->getName()<<endl;
+	cout<<"\t\t+Cac lua chon khac theo thu tu giam dan: "<<endl;
+
+	for (int i = 1; i < m; ++i)
 	{
-		am->getAlternative(index[i])->display();
+		cout<<"\t\t\t"<<i+1<<": "<<am->getAlternative(index[i])->getName()<<endl;
 	}
 	delete []qualification;
 	delete []index;

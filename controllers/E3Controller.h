@@ -13,15 +13,12 @@ public:
 
 	void mainLoop();
 
-	void alternativeProcessing();
+	void inputProcessing();
 	void addAlternative();
-	void editAlternative();
-	void deleteAlternative();
 
-	void criteriaProcessing();
+	void viewDataProcessing();
 	void addCriteria();
 	void loadPQW();
-	void deleteCriteria();
 
 	void computeProcessing();
 	
