@@ -211,7 +211,7 @@ int Compute::outputResult(AlternativeManager *am)
 			{
 				int temp = qualification[j];
 				qualification[j] = qualification[j + 1];
-				qualification[j + 1] = qualification[j];
+				qualification[j + 1] = temp;
 
 				temp = index [j];
 				index [j] = index[j + 1];
